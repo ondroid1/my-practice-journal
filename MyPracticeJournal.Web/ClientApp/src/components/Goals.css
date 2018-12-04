@@ -1,0 +1,28 @@
+.icon-button {
+    /*display: none;*/
+    color: silver;
+    border: 0;
+    background: none;
+    box-shadow: none;
+    border-radius: 0px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+    .icon-button:hover {
+        color: black;
+    }
+
+.table tr:hover td {
+    background-color: whitesmoke;
+}
+
+    /*.table tr:hover td {
+        display: inline-block;
+        color: black;
+    }*/
+
+.action-column {
+    width: 100px;
+}
+
