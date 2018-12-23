@@ -35,7 +35,7 @@ namespace MyPracticeJournal.BusinessLogic.Services
         public void UpdateGoal(GoalDto goalDto)
         {
             var goal = _db.Goals.Find(goalDto.Id);
-            _mapper.Map(goal, goalDto);
+            _mapper.Map(goalDto, goal);
             _db.SaveChanges();
         }
 

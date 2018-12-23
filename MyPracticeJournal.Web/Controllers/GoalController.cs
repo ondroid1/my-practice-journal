@@ -29,25 +29,14 @@ namespace MyPracticeJournal.Web.Controllers
         {
             var goals = _goalService.GetGoals();
             return _mapper.Map<IEnumerable<GoalViewModel>>(goals);
-            //var rng = new Random();
-            //return Enumerable.Range(1, 5).Select(index => new GoalViewModel
-            //{
-            //    Id = index,
-            //    Name = "Goal " + index,
-            //    Description = "Desc " + index
-            //});
         }
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
         public GoalViewModel Get(int id)
         {
-            return new GoalViewModel
-            {
-                Id = id,
-                Name = "Goal " + id,
-                Description = "Desc " + id
-            };
+            var goal = _goalService.GetGoal(id);
+            return _mapper.Map<GoalViewModel>(goal);
         }
 
         // POST api/<controller>
@@ -57,7 +46,7 @@ namespace MyPracticeJournal.Web.Controllers
             if (TryValidateModel(model))
             {
                 var goalDto = _mapper.Map<GoalDto>(model);
-                var newGoal = _goalService.CreateGoal(goalDto);
+                _goalService.CreateGoal(goalDto);
             }
         }
 
