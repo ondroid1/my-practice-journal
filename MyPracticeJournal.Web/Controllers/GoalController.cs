@@ -65,7 +65,7 @@ namespace MyPracticeJournal.Web.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            // TODO
+            _goalService.DeleteGoal(id);
         }
     }
 }

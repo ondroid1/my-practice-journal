@@ -9,8 +9,9 @@ namespace MyPracticeJournal.BusinessLogic.Services.Interfaces
     public interface IGoalService
     {
         IEnumerable<GoalDto> GetGoals();
-        GoalDto GetGoal(int Id);
+        GoalDto GetGoal(int id);
         void UpdateGoal(GoalDto goalDto);
         Goal CreateGoal(GoalDto goalDto);
+        void DeleteGoal(int id);
     }
 }

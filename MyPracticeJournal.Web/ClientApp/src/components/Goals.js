@@ -11,7 +11,6 @@ export class Goals extends Component {
     this.showNewGoalForm = this.showNewGoalForm.bind(this);
     this.deleteGoal = this.deleteGoal.bind(this);
     this.state = { goals: [], loading: true };
-    var that = this;
 
     fetch('api/Goal')
       .then(response => {
@@ -35,9 +34,23 @@ export class Goals extends Component {
     this.props.history.push('goals/0');
   }
 
-  deleteGoal(goalId) {
-    alert(goalId);
-    //confirm('Do you want to delete id ' + goalId);
+  deleteGoal(event, goalId) {
+
+    //event.stopImmediatePropagation();
+      if (window.confirm('Do you want to delete id ' + goalId)) {
+          debugger;
+        fetch('api/Goal/' + goalId, {
+          method: 'DELETE',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+        })
+        .then(data => {
+          this.setState({ goals: data, loading: false });
+        })
+        .catch(error => console.log(error));
+    }
   }
 
   static renderGoalsTable(goals, that) {
@@ -60,8 +73,8 @@ export class Goals extends Component {
               </td>
               <td>{goal.description}</td>
               <td className="action-column">
-                <button className="icon-button" onClick={() => that.deleteGoal(goal.id)}><FontAwesomeIcon icon="edit" /></button>
-                <button className="icon-button"><FontAwesomeIcon icon="trash" /></button>
+                <button className="icon-button"><FontAwesomeIcon icon="edit" /></button>
+                <button className="icon-button" onClick={(event) => that.deleteGoal(event, goal.id)}><FontAwesomeIcon icon="trash" /></button>
               </td>
             </tr>
           )}

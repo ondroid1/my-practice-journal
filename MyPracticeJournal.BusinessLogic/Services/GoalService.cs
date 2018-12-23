@@ -46,5 +46,12 @@ namespace MyPracticeJournal.BusinessLogic.Services
             _db.SaveChanges();
             return newGoal;
         }
+
+        public void DeleteGoal(int id)
+        {
+            var goal = _db.Goals.Find(id);
+            _db.Goals.Remove(goal);
+            _db.SaveChanges();
+        }
     }
 }
