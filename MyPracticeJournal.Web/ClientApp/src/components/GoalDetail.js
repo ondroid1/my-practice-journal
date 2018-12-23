@@ -8,20 +8,21 @@ export class GoalDetail extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
 
     const goalId = this.props.match.params.id;
-    this.state = { loading: true };
+    this.state = { goal: null, loading: true };
 
-    if (goalId) {
+    if (goalId && goalId > 0) {
       fetch('api/Goal/' + goalId)
         .then(response => response.json())
         .then(data => {
           this.setState({ goalId: goalId, goal: data, loading: false });
         });
     } else {
-      const newGoal = new {
+      const newGoal = {
+        id: 0,
         name: null,
         description: null
       }
-      this.setState({ goal: newGoal, loading: false });
+      this.state = { goalId: 0, goal: newGoal, loading: false };
     }
   }
 
@@ -51,6 +52,13 @@ export class GoalDetail extends Component {
           'Content-Type': 'application/json',
         },
         body: data
+      })
+      .then(response => {
+        if (response.ok) {
+          this.handleBack();
+        } else {
+          alert('Response.ok = false');
+        }
       });
     }
   }

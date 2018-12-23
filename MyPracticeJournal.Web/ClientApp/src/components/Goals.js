@@ -8,14 +8,23 @@ export class Goals extends Component {
   constructor(props) {
     super(props);
     this.editGoal = this.editGoal.bind(this);
+    this.showNewGoalForm = this.showNewGoalForm.bind(this);
     this.deleteGoal = this.deleteGoal.bind(this);
     this.state = { goals: [], loading: true };
+    var that = this;
 
     fetch('api/Goal')
-      .then(response => response.json())
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+            alert('Response.ok = false');
+        }
+      })
       .then(data => {
         this.setState({ goals: data, loading: false });
-      });
+      })
+      .catch(error => console.log(error));
   }
 
   editGoal(goal) {
@@ -23,21 +32,22 @@ export class Goals extends Component {
   }
 
   showNewGoalForm() {
-      alert('New goal');
     this.props.history.push('goals/0');
   }
 
   deleteGoal(goalId) {
     alert(goalId);
-    //confirm('Do you want to delete id' + goalId);
+    //confirm('Do you want to delete id ' + goalId);
   }
 
   static renderGoalsTable(goals, that) {
     return (
+      
       <table className='table'>
         <thead>
           <tr>
-            <th>Name</th>
+            <th>
+              Name</th>
             <th>Description</th>
             <th className="action-column"></th>
           </tr>
@@ -74,3 +84,4 @@ export class Goals extends Component {
     );
   }
 }
+
