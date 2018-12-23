@@ -48,12 +48,12 @@ namespace MyPracticeJournal.Web.Controllers
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
-        public void Put()
+        public void Put([FromBody]GoalViewModel model)
         {
-            //if (TryValidateModel(model))
-            //{
-            //    // TODO
-            //}
+            if (TryValidateModel(model))
+            {
+                // TODO
+            }
         }
 
         // DELETE api/<controller>/5

@@ -5,6 +5,7 @@ export class GoalDetail extends Component {
 
   constructor(props) {
     super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
     const goalId = this.props.match.params.id;
     this.state = { loading: true };
@@ -24,19 +25,23 @@ export class GoalDetail extends Component {
     }
   }
 
-  static handleSubmit(event) {
-    alert();
+  handleSubmit(event) {
     event.preventDefault();
-    const data = JSON.stringify(new FormData(event.target));
-    debugger;
+    var formData = new FormData(event.target);
+    var formObject = {};
+    formData.forEach(function(value, key){
+      formObject[key] = value;
+    });
+    const data = JSON.stringify(formObject);
+
     if (this.state.goalId) {
-      fetch('api/Goal' + this.params.id, {
+      fetch('api/Goal/' + this.state.goalId, {
         method: 'PUT',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
-        body: data,
+        body: data
       });
     } else {
       fetch('api/Goal', {
@@ -45,42 +50,43 @@ export class GoalDetail extends Component {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
-        body: data,
+        body: data
       });
     }
   }
 
-  static handleBack() {
+  handleBack() {
     this.props.history.push('/goals');
   }
 
   static renderGoalDetailForm(goal, that) {
     return (
-      <form className='form' onSubmit={that.handleSubmit}>
+      <form className='form' onSubmit={(event) => that.handleSubmit(event)}>
         <fieldset>
+          <input type="hidden" id="id" name="id" value={goal.id}/>
           <div className="form-group">
-            <label htmlFor="goal_name">Name</label>
+            <label htmlFor="name">Name</label>
             <input
               type="text"
               className="form-control"
               defaultValue={goal.name}
-              name="goal_name"
+              name="name"
               placeholder="Goal" />
           </div>
           <div className="form-group">
-            <label htmlFor="goal_description">Description</label>
+            <label htmlFor="description">Description</label>
             <textarea 
               type="textarea"
               className="form-control"
               defaultValue={goal.description}
-              name="goal_description"
+              name="description"
               placeholder="Description" />
           </div>
         </fieldset>
 
         <div className="btn-toolbar">
           <button type="submit" className="btn btn-primary">Save</button>
-          <button type="button" className="btn btn-secondary" onClick={that.handleBack}>Back</button>
+          <button type="button" className="btn btn-secondary" onClick={() => that.handleBack}>Back</button>
         </div>
       </form >
     );

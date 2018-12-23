@@ -23,7 +23,8 @@ export class Goals extends Component {
   }
 
   showNewGoalForm() {
-    alert('New goal');
+      alert('New goal');
+    this.props.history.push('goals/0');
   }
 
   deleteGoal(goalId) {
