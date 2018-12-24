@@ -10,6 +10,7 @@ import { GoalDetail } from './components/GoalDetail';
 import { Practices } from './components/Practices';
 import { PracticeDetail } from './components/PracticeDetail';
 import { NotFound } from './components/NotFound';
+import './App.css'
 
 library.add(faEdit, faTrash);
 

@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import './Goals.css';
 
 export class Practices extends Component {
   displayName = Practices.name
 
   constructor(props) {
     super(props);
-    this.editGoal = this.editGoal.bind(this);
-    this.showNewGoalForm = this.showNewGoalForm.bind(this);
-    this.deleteGoal = this.deleteGoal.bind(this);
-    this.state = { goals: [], loading: true };
+    this.editPractice = this.editPractice.bind(this);
+    this.showNewPracticeForm = this.showNewPracticeForm.bind(this);
+    this.deletePractice = this.deletePractice.bind(this);
+    this.state = { practices: [], loading: true };
 
-    fetch('api/Goal')
+    fetch('api/Practice')
       .then(response => {
         if (response.ok) {
           return response.json();
@@ -21,25 +20,25 @@ export class Practices extends Component {
         }
       })
       .then(data => {
-        this.setState({ goals: data, loading: false });
+        this.setState({ practices: data.practiceList, goals: data.goalList, loading: false });
       })
       .catch(error => console.log(error));
   }
 
-  editGoal(goal) {
-    this.props.history.push('practices/' + goal.id);
+  editPractice(practice) {
+    this.props.history.push('practices/' + practice.id);
   }
 
-  showNewGoalForm() {
+  showNewPracticeForm() {
     this.props.history.push('practices/0');
   }
 
-  deleteGoal(event, goalId) {
+  deletePractice(event, practiceId) {
 
     //faevent.stopImmediatePropagation();
-      if (window.confirm('Do you want to delete id ' + goalId)) {
+      if (window.confirm('Do you want to delete id ' + practiceId)) {
           debugger;
-        fetch('api/Goal/' + goalId, {
+        fetch('api/Practice/' + practiceId, {
           method: 'DELETE',
           headers: {
             'Accept': 'application/json',
@@ -47,34 +46,40 @@ export class Practices extends Component {
           },
         })
         .then(data => {
-          this.setState({ goals: data, loading: false });
+          this.setState({ practices: data, loading: false });
         })
         .catch(error => console.log(error));
     }
   }
 
-  static renderGoalsTable(goals, that) {
+  static renderPracticesTable(practices, that) {
     return (
       
       <table className='table'>
         <thead>
           <tr>
-            <th>
-              Name</th>
+            <th>Goal</th>
+            <th>Name</th>
             <th>Description</th>
+            <th>Schedule</th>
             <th className="action-column"></th>
           </tr>
         </thead>
         <tbody>
-          {goals.map(goal => 
-            <tr key={goal.id} onClick={() => that.editGoal(goal)}>
+          {practices.map(practice => 
+            <tr key={practice.id} onClick={() => that.editPractice(practice)}>
               <td>
-                {goal.name}
+                <button type="button" className="btn" onClick={this.showNewPracticeForm}>{practice.goal.name}</button>
               </td>
-              <td>{goal.description}</td>
+              <td>
+                {practice.name}
+              </td>
+              <td>{practice.description}</td>
+              <td>TODO               
+              </td>
               <td className="action-column">
                 <button className="icon-button"><FontAwesomeIcon icon="edit" /></button>
-                <button className="icon-button" onClick={(event) => that.deleteGoal(event, goal.id)}><FontAwesomeIcon icon="trash" /></button>
+                <button className="icon-button" onClick={(event) => that.deletePractice(event, practice.id)}><FontAwesomeIcon icon="trash" /></button>
               </td>
             </tr>
           )}
@@ -86,12 +91,12 @@ export class Practices extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : Practices.renderGoalsTable(this.state.goals, this);
+      : Practices.renderPracticesTable(this.state.practices, this);
 
     return (
       <div>
         <h1>Practices</h1>
-        <button type="button" class="btn btn-primary" onClick={this.showNewGoalForm}>Add</button>
+        <button type="button" className="btn btn-primary" onClick={this.showNewPracticeForm}>Add</button>
         {contents}
       </div>
     );

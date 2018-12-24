@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using AutoMapper;
 using MyPracticeJournal.BusinessLogic.DataTransferObjects;
 using MyPracticeJournal.BusinessLogic.Services.Interfaces;

@@ -1,6 +1,6 @@
 {
-  "short_name": "MyPracticeJournal.Web",
-  "name": "MyPracticeJournal.Web",
+  "short_name": "MyPracticeJournal",
+  "name": "MyPracticeJournal",
   "icons": [
     {
       "src": "favicon.ico",

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MyPracticeJournal.BusinessLogic.DataTransferObjects;
 using MyPracticeJournal.BusinessLogic.Services.Interfaces;
 using MyPracticeJournal.Web.Models;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MyPracticeJournal.Web.Controllers
 {

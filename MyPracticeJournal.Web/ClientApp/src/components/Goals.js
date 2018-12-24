@@ -62,7 +62,7 @@ export class Goals extends Component {
             <th>
               Name</th>
             <th>Description</th>
-            <th className="action-column"></th>
+            <th className="action-column"><button type="button" className="btn btn-primary" onClick={that.showNewGoalForm}>Add</button></th>
           </tr>
         </thead>
         <tbody>
@@ -91,7 +91,6 @@ export class Goals extends Component {
     return (
       <div>
         <h1>Goals</h1>
-        <button type="button" class="btn btn-primary" onClick={this.showNewGoalForm}>Add</button>
         {contents}
       </div>
     );

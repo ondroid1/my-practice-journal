@@ -37,7 +37,9 @@ namespace MyPracticeJournal.Web
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             
+            // Business Logic Services
             services.AddScoped<IGoalService, GoalService>();
+            services.AddScoped<IPracticeService, PracticeService>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
