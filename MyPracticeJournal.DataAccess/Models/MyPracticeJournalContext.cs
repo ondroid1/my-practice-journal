@@ -11,5 +11,7 @@ namespace MyPracticeJournal.DataAccess
         { }
 
         public DbSet<Goal> Goals { get; set; }
+        public DbSet<Practice> Practices { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
     }
 }

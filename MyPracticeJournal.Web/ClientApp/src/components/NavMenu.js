@@ -12,7 +12,7 @@ export class NavMenu extends Component {
       <Navbar inverse fixedTop fluid collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to={'/'}>MyPracticeJournal.Web</Link>
+            <Link to={'/'}>My Practice Journal</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
@@ -23,16 +23,26 @@ export class NavMenu extends Component {
                 <Glyphicon glyph='home' /> Home
               </NavItem>
             </LinkContainer>
+            <LinkContainer to={'/my-week'}>
+              <NavItem>
+                <Glyphicon glyph='road' /> My Week
+              </NavItem>
+            </LinkContainer>
             <LinkContainer to={'/goals'}>
               <NavItem>
-                <Glyphicon glyph='th-list' /> Goals
+                <Glyphicon glyph='star' /> Goals
               </NavItem>
             </LinkContainer>
-            <LinkContainer to={'/counter'}>
+            <LinkContainer to={'/practices'}>
               <NavItem>
-                <Glyphicon glyph='education' /> Counter
+                <Glyphicon glyph='music' /> Practices
               </NavItem>
             </LinkContainer>
+            <LinkContainer to={'/reports'}>
+              <NavItem>
+                <Glyphicon glyph='stats' /> Reports
+              </NavItem>
+            </LinkContainer>            
           </Nav>
         </Navbar.Collapse>
       </Navbar>

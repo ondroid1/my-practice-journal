@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './Goals.css';
 
-export class Goals extends Component {
-  displayName = Goals.name
+export class Practices extends Component {
+  displayName = Practices.name
 
   constructor(props) {
     super(props);
@@ -27,11 +27,11 @@ export class Goals extends Component {
   }
 
   editGoal(goal) {
-    this.props.history.push('goals/' + goal.id);
+    this.props.history.push('practices/' + goal.id);
   }
 
   showNewGoalForm() {
-    this.props.history.push('goals/0');
+    this.props.history.push('practices/0');
   }
 
   deleteGoal(event, goalId) {
@@ -86,11 +86,11 @@ export class Goals extends Component {
   render() {
     let contents = this.state.loading
       ? <p><em>Loading...</em></p>
-      : Goals.renderGoalsTable(this.state.goals, this);
+      : Practices.renderGoalsTable(this.state.goals, this);
 
     return (
       <div>
-        <h1>Goals</h1>
+        <h1>Practices</h1>
         <button type="button" class="btn btn-primary" onClick={this.showNewGoalForm}>Add</button>
         {contents}
       </div>
