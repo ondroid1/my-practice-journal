@@ -56,3 +56,13 @@
         text-overflow: ellipsis;
     }
 }
+
+.navbar-inverse .navbar-brand {
+    color: darkorange;
+}
+
+.navbar-brand .glyphicon {
+    margin-left: 6px; 
+    margin-right: 2px;
+}
+

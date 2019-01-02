@@ -1,4 +1,6 @@
 ﻿import React, { Component } from 'react';
+import {ScheduleSelector} from './ScheduleSelector';
+import './PracticeDetail.css';
 
 export class PracticeDetail extends Component {
   displayName = PracticeDetail.name
@@ -6,6 +8,7 @@ export class PracticeDetail extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getYoutubeImage = this.getYoutubeImage.bind(this);
 
     const practiceId = this.props.match.params.id;
     this.state = { practice: null, loading: true };
@@ -67,11 +70,32 @@ export class PracticeDetail extends Component {
     this.props.history.push('/practices');
   }
 
+  getYoutubeImage(videoUrl) {
+    if (videoUrl) {
+      var videoId = videoUrl.split('v=')[1];
+      var ampersandPosition = videoId.indexOf('&');
+      if(ampersandPosition != -1) {
+        var id = videoId.substring(0, ampersandPosition);
+        return `http://img.youtube.com/vi/${id}/0.jpg` ;
+      }
+    }
+
+    return null;
+  }
+
   static renderPracticeDetailForm(practice, that) {
     return (
       <form className='form' onSubmit={(event) => that.handleSubmit(event)}>
         <fieldset>
           <input type="hidden" id="id" name="id" value={practice.id}/>
+
+          <div className="form-group">
+            <label htmlFor="name">Goal</label>
+            
+          </div>
+
+          {/* <button type="button" className="btn">{practice.goal.name}</button> */}
+
           <div className="form-group">
             <label htmlFor="name">Name</label>
             <input
@@ -79,8 +103,9 @@ export class PracticeDetail extends Component {
               className="form-control"
               defaultValue={practice.name}
               name="name"
-              placeholder="Practice" />
+              placeholder="Name" />
           </div>
+
           <div className="form-group">
             <label htmlFor="description">Description</label>
             <textarea 
@@ -90,6 +115,21 @@ export class PracticeDetail extends Component {
               name="description"
               placeholder="Description" />
           </div>
+
+          <div className="form-group">
+            <label htmlFor="tutorialUrl">Tutorial Link</label>
+            <input
+              type="text"
+              className="form-control"
+              defaultValue={practice.tutorialUrl}
+              name="name"
+              placeholder="TutorialUrl" />
+          </div>
+
+          <a href={practice.tutorialUrl} target="blank"><img className="tutorial-image" src={that.getYoutubeImage(practice.tutorialUrl)} /></a>
+          
+
+          <ScheduleSelector />
         </fieldset>
 
         <div className="btn-toolbar">

@@ -53,6 +53,7 @@ export class Practices extends Component {
   }
 
   static renderPracticesTable(practices, that) {
+
     return (
       
       <table className='table'>
@@ -62,6 +63,7 @@ export class Practices extends Component {
             <th>Name</th>
             <th>Description</th>
             <th>Schedule</th>
+            <th>Tutorial</th>
             <th className="action-column"></th>
           </tr>
         </thead>
@@ -74,8 +76,17 @@ export class Practices extends Component {
               <td>
                 {practice.name}
               </td>
-              <td>{practice.description}</td>
-              <td>TODO               
+              <td>
+                {practice.description}
+              </td>
+              <td>
+                TODO
+              </td>
+              <td>
+                { practice.tutorialUrl
+                  ? <a href={practice.tutorialUrl} target="blank"><FontAwesomeIcon icon="play" /></a>
+                  : null
+                }
               </td>
               <td className="action-column">
                 <button className="icon-button"><FontAwesomeIcon icon="edit" /></button>

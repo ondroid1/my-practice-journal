@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace MyPracticeJournal.DataAccess.Models
 {
@@ -16,8 +14,8 @@ namespace MyPracticeJournal.DataAccess.Models
 
         public string Description { get; set; }
 
+        public string TutorialUrl { get; set; }
+
         public ICollection<Schedule> Schedules { get; set; }
-
-
     }
 }

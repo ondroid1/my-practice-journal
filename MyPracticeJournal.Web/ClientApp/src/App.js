@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrash, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { Journal } from './components/Journal';
@@ -12,7 +12,7 @@ import { PracticeDetail } from './components/PracticeDetail';
 import { NotFound } from './components/NotFound';
 import './App.css'
 
-library.add(faEdit, faTrash);
+library.add(faEdit, faTrash, faPlay);
 
 export default class App extends Component {
   displayName = App.name

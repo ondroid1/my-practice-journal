@@ -12,7 +12,7 @@ export class NavMenu extends Component {
       <Navbar inverse fixedTop fluid collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to={'/'}>My Practice Journal</Link>
+            <Link to={'/'}><Glyphicon glyph='headphones' />&nbsp; My Practice Journal</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
