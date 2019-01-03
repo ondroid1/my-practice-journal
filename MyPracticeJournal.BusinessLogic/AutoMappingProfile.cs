@@ -9,6 +9,7 @@ namespace MyPracticeJournal.BusinessLogic
         public AutoMappingProfile()
         {
             CreateMap<Goal, GoalDto>();
+            CreateMap<Practice, PracticeDto>();
         }
     }
 }

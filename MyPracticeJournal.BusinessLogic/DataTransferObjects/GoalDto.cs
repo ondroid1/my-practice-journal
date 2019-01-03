@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace MyPracticeJournal.BusinessLogic.DataTransferObjects
 {
     public class GoalDto
@@ -6,5 +8,6 @@ namespace MyPracticeJournal.BusinessLogic.DataTransferObjects
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public ICollection<PracticeDto> Practices { get; set; }
     }
 }
