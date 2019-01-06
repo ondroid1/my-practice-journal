@@ -113,4 +113,3 @@ export class Practices extends Component {
     );
   }
 }
-

@@ -35,11 +35,14 @@ namespace MyPracticeJournal.Web
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddJsonOptions(options => { options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore; });;
             
             // Business Logic Services
             services.AddScoped<IGoalService, GoalService>();
             services.AddScoped<IPracticeService, PracticeService>();
+            services.AddScoped<IMyWeekService, MyWeekService>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

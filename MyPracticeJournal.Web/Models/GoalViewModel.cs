@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyPracticeJournal.Web.Models
 {
@@ -10,6 +11,9 @@ namespace MyPracticeJournal.Web.Models
         [MaxLength(200)]
         public string Name { get; set; }
 
+        [MaxLength(1000)]
         public string Description { get; set; }
+
+        public IList<PracticeListViewModel> Practices { get; set; }
     }
 }

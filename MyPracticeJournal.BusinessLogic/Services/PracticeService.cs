@@ -30,7 +30,10 @@ namespace MyPracticeJournal.BusinessLogic.Services
 
         public PracticeDto GetPractice(int id)
         {
-            var practice = _db.Practices.Find(id);
+            var practice = _db.Set<Practice>()
+                .Include(p => p.Goal)
+                .Include(p => p.Schedules)
+                .First(x => x.Id == id);
             var practiceDto = _mapper.Map<PracticeDto>(practice);
             return practiceDto;
         }

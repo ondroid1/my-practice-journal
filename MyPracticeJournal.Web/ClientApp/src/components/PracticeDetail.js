@@ -20,12 +20,17 @@ export class PracticeDetail extends Component {
           this.setState({ practiceId: practiceId, practice: data, loading: false });
         });
     } else {
-      const newPractice = {
-        id: 0,
-        name: null,
-        description: null
-      }
-      this.state = { practiceId: 0, practice: newPractice, loading: false };
+      fetch('api/Goal')
+      .then(response => response.json())
+      .then(data => {
+        const newPractice = {
+          id: 0,
+          name: null,
+          description: null,
+          allGoals: data
+        }
+        this.setState({ practiceId: 0, practice: newPractice, loading: false });
+      });
     }
   }
 
@@ -34,8 +39,12 @@ export class PracticeDetail extends Component {
     var formData = new FormData(event.target);
     var formObject = {};
     formData.forEach(function(value, key){
+      if (key.indexOf("Minutes") > -1 && value === '') {
+        value = 0;
+      }
       formObject[key] = value;
     });
+
     const data = JSON.stringify(formObject);
 
     if (this.state.practiceId) {
@@ -71,13 +80,15 @@ export class PracticeDetail extends Component {
   }
 
   getYoutubeImage(videoUrl) {
+    debugger;
     if (videoUrl) {
       var videoId = videoUrl.split('v=')[1];
       var ampersandPosition = videoId.indexOf('&');
       if(ampersandPosition != -1) {
-        var id = videoId.substring(0, ampersandPosition);
-        return `http://img.youtube.com/vi/${id}/0.jpg` ;
-      }
+        var videoId = videoId.substring(0, ampersandPosition);
+      } 
+
+      return `http://img.youtube.com/vi/${videoId}/0.jpg` ;
     }
 
     return null;
@@ -91,7 +102,10 @@ export class PracticeDetail extends Component {
 
           <div className="form-group">
             <label htmlFor="name">Goal</label>
-            
+            <select className="form-control" name="goalId" value={practice.goalId}>
+              <option value=''>Select a goal</option>
+              {practice.allGoals.map((goal) => <option value={goal.id}>{goal.name}</option>)}
+            </select>
           </div>
 
           {/* <button type="button" className="btn">{practice.goal.name}</button> */}
@@ -122,14 +136,13 @@ export class PracticeDetail extends Component {
               type="text"
               className="form-control"
               defaultValue={practice.tutorialUrl}
-              name="name"
+              name="tutorialUrl"
               placeholder="TutorialUrl" />
           </div>
 
           <a href={practice.tutorialUrl} target="blank"><img className="tutorial-image" src={that.getYoutubeImage(practice.tutorialUrl)} /></a>
           
-
-          <ScheduleSelector />
+          <ScheduleSelector practice={practice} />
         </fieldset>
 
         <div className="btn-toolbar">

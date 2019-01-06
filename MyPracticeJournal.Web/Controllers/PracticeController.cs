@@ -28,13 +28,10 @@ namespace MyPracticeJournal.Web.Controllers
         {
             var practices = _practiceService.GetPractices();
             var practiceViewModels = _mapper.Map<IEnumerable<PracticeViewModel>>(practices);
-            var goals = _goalService.GetGoals();
-            var goalViewModels = _mapper.Map<IEnumerable<GoalViewModel>>(goals);
 
             return new PracticeListViewModel
             {
-                PracticeList = practiceViewModels.ToList(),
-                GoalList = goalViewModels.ToList()
+                PracticeList = practiceViewModels.ToList()
             };
         }
 
@@ -42,8 +39,12 @@ namespace MyPracticeJournal.Web.Controllers
         [HttpGet("{id}")]
         public PracticeViewModel Get(int id)
         {
+            var goals = _goalService.GetGoals();
             var practice = _practiceService.GetPractice(id);
-            return _mapper.Map<PracticeViewModel>(practice);
+            var model = _mapper.Map<PracticeViewModel>(practice);
+            model.AllGoals = goals.ToList();
+
+            return model;
         }
 
         // POST api/<controller>
