@@ -9,7 +9,6 @@ namespace MyPracticeJournal.BusinessLogic.DataTransferObjects
         public int Id { get; set; }
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }
-
-        // TODO - practices
+        public IList<MyDayDto> Days { get; set; }
     }
 }

@@ -10,6 +10,7 @@ namespace MyPracticeJournal.BusinessLogic
         {
             CreateMap<Goal, GoalDto>();
             CreateMap<Practice, PracticeDto>();
+            CreateMap<Schedule, ScheduleDto>();
         }
     }
 }

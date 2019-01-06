@@ -20,9 +20,14 @@ namespace MyPracticeJournal.Web.Controllers
 
         // GET: api/<controller>
         [HttpGet]
-        public MyWeekViewModel Get()
+        public MyWeekViewModel Get(DateTime? dateFrom)
         {
-            var myWeekDto = _myWeekService.GetWeek(DateTime.Now);
+            if (dateFrom == null)
+            {
+                dateFrom = DateTime.Now;
+            }
+
+            var myWeekDto = _myWeekService.GetWeek(dateFrom.Value);
             return _mapper.Map<MyWeekViewModel>(myWeekDto);
         }
     }

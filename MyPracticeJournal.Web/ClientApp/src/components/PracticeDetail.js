@@ -84,8 +84,8 @@ export class PracticeDetail extends Component {
     if (videoUrl) {
       var videoId = videoUrl.split('v=')[1];
       var ampersandPosition = videoId.indexOf('&');
-      if(ampersandPosition != -1) {
-        var videoId = videoId.substring(0, ampersandPosition);
+      if(ampersandPosition !== -1) {
+        videoId = videoId.substring(0, ampersandPosition);
       } 
 
       return `http://img.youtube.com/vi/${videoId}/0.jpg` ;
@@ -140,7 +140,7 @@ export class PracticeDetail extends Component {
               placeholder="TutorialUrl" />
           </div>
 
-          <a href={practice.tutorialUrl} target="blank"><img className="tutorial-image" src={that.getYoutubeImage(practice.tutorialUrl)} /></a>
+          <a href={practice.tutorialUrl} target="blank"><img className="tutorial-image" alt="tutorial" src={that.getYoutubeImage(practice.tutorialUrl)} /></a>
           
           <ScheduleSelector practice={practice} />
         </fieldset>

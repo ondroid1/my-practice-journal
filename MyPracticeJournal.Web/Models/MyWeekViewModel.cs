@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using MyPracticeJournal.BusinessLogic.DataTransferObjects;
 
 namespace MyPracticeJournal.Web.Models
 {
@@ -8,6 +10,6 @@ namespace MyPracticeJournal.Web.Models
 
         public DateTime DateTo { get; set; }
 
-        // TODO Practices
+        public IList<MyDayDto> Days { get; set; }
     }
 }

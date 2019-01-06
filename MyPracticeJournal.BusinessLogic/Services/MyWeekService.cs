@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using MyPracticeJournal.BusinessLogic.DataTransferObjects;
 using MyPracticeJournal.BusinessLogic.Extensions;
 using MyPracticeJournal.BusinessLogic.Services.Interfaces;
@@ -22,12 +24,38 @@ namespace MyPracticeJournal.BusinessLogic.Services
 
         public MyWeekDto GetWeek(DateTime date)
         {
-            var dateFrom = DateTime.Now.StartOfWeek(DayOfWeek.Monday);
+            var dateFrom = date.StartOfWeek(DayOfWeek.Monday);
+
+            var schedules = _db.Set<Schedule>()
+                .Include(schedule => schedule.Practice)
+                .Include(schedule => schedule.Practice.Goal);
+
+            var scheduleDtos = _mapper.Map<IEnumerable<ScheduleDto>>(schedules);
+
+            var days = new List<MyDayDto>();
+
+            foreach (var scheduleDto in scheduleDtos)
+            {
+                var day = days.FirstOrDefault(x => x.DayOfWeek == scheduleDto.DayOfWeek);
+
+                if (day == null)
+                {
+                    day = new MyDayDto
+                    {
+                        DayOfWeek = scheduleDto.DayOfWeek,
+                        Practices = new List<PracticeDto>(),
+                    };
+                    days.Add(day);
+                }
+
+                day.Practices.Add(scheduleDto.Practice);
+            }
 
             return new MyWeekDto
             {
                 DateFrom = dateFrom,
-                DateTo = dateFrom.AddDays(6)
+                DateTo = dateFrom.AddDays(6),
+                Days = days
             };
         }
     }

@@ -25,7 +25,7 @@ export class ScheduleSelector extends Component {
             </td>
             <td>
               <input type="number" name="mondayMinutes" min="10" max="60" step="10" 
-                value={ this.props.practice.mondayMinutes == 0 ? '' : this.props.practice.mondayMinutes } />
+                value={ this.props.practice.mondayMinutes === 0 ? '' : this.props.practice.mondayMinutes } />
             </td>
           </tr>
 
@@ -35,7 +35,7 @@ export class ScheduleSelector extends Component {
             </td>
             <td>
               <input type="number" name="tuesdayMinutes" min="10" max="60" step="10" 
-                value={ this.props.practice.tuesdayMinutes == 0 ? '' : this.props.practice.tuesdayMinutes } />
+                value={ this.props.practice.tuesdayMinutes === 0 ? '' : this.props.practice.tuesdayMinutes } />
             </td>
           </tr>
 
@@ -45,7 +45,7 @@ export class ScheduleSelector extends Component {
             </td>
             <td>
               <input type="number" name="wednesdayMinutes" min="10" max="60" step="10" 
-                value={ this.props.practice.wednesdayMinutes == 0 ? '' : this.props.practice.wednesdayMinutes} />
+                value={ this.props.practice.wednesdayMinutes === 0 ? '' : this.props.practice.wednesdayMinutes} />
             </td>
           </tr>
 
@@ -55,7 +55,7 @@ export class ScheduleSelector extends Component {
             </td>
             <td>
               <input type="number" name="thursdayMinutes" min="10" max="60" step="10" 
-                value={ this.props.practice.thursdayMinutes == 0 ? '' : this.props.practice.thursdayMinutes } />
+                value={ this.props.practice.thursdayMinutes === 0 ? '' : this.props.practice.thursdayMinutes } />
             </td>
           </tr>
 
@@ -65,7 +65,7 @@ export class ScheduleSelector extends Component {
             </td>
             <td>
               <input type="number" name="fridayMinutes" min="10" max="60" step="10" 
-                value={ this.props.practice.fridayMinutes == 0 ? '' : this.props.practice.fridayMinutes } />
+                value={ this.props.practice.fridayMinutes === 0 ? '' : this.props.practice.fridayMinutes } />
             </td>
           </tr>
 
@@ -75,7 +75,7 @@ export class ScheduleSelector extends Component {
             </td>
             <td>
               <input type="number" name="saturdayMinutes" min="10" max="60" step="10" 
-                value={ this.props.practice.saturdayMinutes == 0 ? '' : this.props.practice.saturdayMinutes } />
+                value={ this.props.practice.saturdayMinutes === 0 ? '' : this.props.practice.saturdayMinutes } />
             </td>
           </tr>
 
@@ -85,7 +85,7 @@ export class ScheduleSelector extends Component {
             </td>
             <td>
               <input type="number" name="sundayMinutes" min="10" max="60" step="10" 
-                value={ this.props.practice.sundayMinutes == 0 ? '' : this.props.practice.sundayMinutes } />
+                value={ this.props.practice.sundayMinutes === 0 ? '' : this.props.practice.sundayMinutes } />
             </td>
           </tr>
         </tbody>
