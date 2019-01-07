@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyPracticeJournal.DataAccess;
 
 namespace MyPracticeJournal.DataAccess.Migrations
 {
     [DbContext(typeof(MyPracticeJournalContext))]
-    partial class MyPracticeJournalContextModelSnapshot : ModelSnapshot
+    [Migration("20190107100511_FinishedPractices")]
+    partial class FinishedPractices
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,8 +32,6 @@ namespace MyPracticeJournal.DataAccess.Migrations
                     b.Property<int>("PracticeId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PracticeId");
 
                     b.ToTable("FinishedPractices");
                 });
@@ -98,14 +98,6 @@ namespace MyPracticeJournal.DataAccess.Migrations
                         .HasName("IX_DayOfWeek_PracticeId");
 
                     b.ToTable("Schedules");
-                });
-
-            modelBuilder.Entity("MyPracticeJournal.DataAccess.Models.FinishedPractice", b =>
-                {
-                    b.HasOne("MyPracticeJournal.DataAccess.Models.Practice", "Practice")
-                        .WithMany("FinishedPractices")
-                        .HasForeignKey("PracticeId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("MyPracticeJournal.DataAccess.Models.Practice", b =>

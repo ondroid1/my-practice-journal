@@ -68,7 +68,7 @@ export class Goals extends Component {
         <tbody>
           {goals.map(goal => 
             <tr key={goal.id} onClick={() => that.editGoal(goal)}>
-              <td>
+              <td className="goal-color">
                 {goal.name}
               </td>
               <td>{goal.description}</td>

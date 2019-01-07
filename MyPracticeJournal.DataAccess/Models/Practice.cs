@@ -21,5 +21,7 @@ namespace MyPracticeJournal.DataAccess.Models
         public string TutorialUrl { get; set; }
 
         public ICollection<Schedule> Schedules { get; set; }
+
+        public ICollection<FinishedPractice> FinishedPractices { get; set; }
     }
 }

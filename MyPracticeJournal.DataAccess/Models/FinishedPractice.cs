@@ -9,5 +9,7 @@ namespace MyPracticeJournal.DataAccess.Models
         public DateTime Date { get; set; }
 
         public int PracticeId { get; set; }
+
+        public Practice Practice { get; set; }
     }
 }

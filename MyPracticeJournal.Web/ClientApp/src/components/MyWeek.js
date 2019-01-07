@@ -10,6 +10,8 @@ export class MyWeek extends Component {
     super(props);
     this.onWeekChange = this.onWeekChange.bind(this);
     this.getDay = this.getDay.bind(this);
+    this.switchFinishedFlag = this.switchFinishedFlag.bind(this);
+    
     this.state = { myWeek: {}, loading: true };
 
     fetch('api/MyWeek')
@@ -76,6 +78,23 @@ export class MyWeek extends Component {
       .catch(error => console.log(error));
   }
 
+  switchFinishedFlag(practiceId, dayIndex) {
+
+    let data = { 
+      practiceId: practiceId, 
+      weekFromDate: this.state.myWeek.dateFrom,
+      dayOfWeek: dayIndex }
+
+    fetch('api/MyWeek', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    });
+  }
+
   render() {
     return (
       <div>
@@ -87,7 +106,7 @@ export class MyWeek extends Component {
           onWeekChange={this.onWeekChange}/>
 
         <hr />
-        <MyDay dayIndex={1} day={this.getDay(1)} />
+        <MyDay dayIndex={1} day={this.getDay(1)} onFinishedFlagChange={this.switchFinishedFlag} />
         <MyDay dayIndex={2} day={this.getDay(2)} />
         <MyDay dayIndex={3} day={this.getDay(3)} />
         <MyDay dayIndex={4} day={this.getDay(4)} />

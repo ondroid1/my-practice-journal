@@ -30,5 +30,14 @@ namespace MyPracticeJournal.Web.Controllers
             var myWeekDto = _myWeekService.GetWeek(dateFrom.Value);
             return _mapper.Map<MyWeekViewModel>(myWeekDto);
         }
+
+        [HttpPost]
+        public MyWeekViewModel Post([FromBody]FinishedPracticeViewModel model)
+        {
+            _myWeekService.UpdateFinishedPractice(model.PracticeId, model.WeekFromDate, model.DayOfWeek);
+
+            var myWeekDto = _myWeekService.GetWeek(model.WeekFromDate);
+            return _mapper.Map<MyWeekViewModel>(myWeekDto);
+        }
     }
 }

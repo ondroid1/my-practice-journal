@@ -1,0 +1,34 @@
+
+
+ul {
+    list-style: none;
+}
+
+li span {
+    font-size: 18px;
+    margin-right: 10px;
+    
+}
+
+.check {
+    font-size: 30px;
+}
+
+.green-check {
+    color: green;
+}
+
+.grey-check {
+    color: lightgray;
+}
+
+.grey-check :hover {
+    color: lightgreen;
+    cursor: -webkit-grab; 
+    cursor: grab;
+}
+
+.minutes {
+    font-weight: bold;
+}
+

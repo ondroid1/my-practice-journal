@@ -8,7 +8,7 @@ export class WeekSelector extends Component {
     }
 
     onWeekChangeClick(weekMovement) {
-        this.props.onWeekChange(weekMovement)
+        this.props.onWeekChange(weekMovement);
     }
 
     render() {

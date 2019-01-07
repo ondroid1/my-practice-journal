@@ -25,8 +25,8 @@ export class Practices extends Component {
       .catch(error => console.log(error));
   }
 
-  editPractice(practice) {
-    this.props.history.push('practices/' + practice.id);
+  editPractice(practiceId) {
+    this.props.history.push('practices/' + practiceId);
   }
 
   showNewPracticeForm() {
@@ -69,11 +69,11 @@ export class Practices extends Component {
         </thead>
         <tbody>
           {practices.map(practice => 
-            <tr key={practice.id} onClick={() => that.editPractice(practice)}>
+            <tr key={practice.id}>
               <td>
-                <button type="button" className="btn" onClick={this.showNewPracticeForm}>{practice.goal.name}</button>
+                <a href={"/goals/" + practice.goal.id} className="goal-color">{practice.goal.name}</a>
               </td>
-              <td>
+              <td className="practice-color">
                 {practice.name}
               </td>
               <td>
@@ -89,7 +89,7 @@ export class Practices extends Component {
                 }
               </td>
               <td className="action-column">
-                <button className="icon-button"><FontAwesomeIcon icon="edit" /></button>
+                <button className="icon-button" onClick={() => that.editPractice(practice.id)}><FontAwesomeIcon icon="edit" /></button>
                 <button className="icon-button" onClick={(event) => that.deletePractice(event, practice.id)}><FontAwesomeIcon icon="trash" /></button>
               </td>
             </tr>

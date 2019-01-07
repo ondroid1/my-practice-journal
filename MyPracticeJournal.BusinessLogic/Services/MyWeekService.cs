@@ -58,5 +58,32 @@ namespace MyPracticeJournal.BusinessLogic.Services
                 Days = days
             };
         }
+
+        public void UpdateFinishedPractice(int practiceId, DateTime weekFromDate, DayOfWeek dayOfWeek)
+        {
+            // calculate practice date
+            var practiceDate = dayOfWeek == DayOfWeek.Sunday
+                ? weekFromDate.AddDays(6)
+                : weekFromDate.AddDays((int) dayOfWeek - 1);
+
+            // update db
+            var finishedPractice = _db.FinishedPractices
+                .FirstOrDefault(x => x.PracticeId == practiceId && x.Date == practiceDate);
+
+            if (finishedPractice == null)
+            {
+                _db.FinishedPractices.Add(new FinishedPractice
+                {
+                    Date = practiceDate,
+                    PracticeId = practiceId,
+                });
+            }
+            else
+            {
+                _db.FinishedPractices.Remove(finishedPractice);
+            }
+
+            _db.SaveChanges();
+        }
     }
 }
