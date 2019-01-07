@@ -10,6 +10,7 @@ export class MyDay extends Component {
     this.getDayName = this.getDayName.bind(this);
     this.getDayPractices = this.getDayPractices.bind(this);
     this.switchFinishedFlag = this.switchFinishedFlag.bind(this);
+    this.isFinishedPractice = this.isFinishedPractice.bind(this);
   }
 
   weekday = new Array( "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" );
@@ -26,8 +27,13 @@ export class MyDay extends Component {
   }
 
   switchFinishedFlag(practiceId) {
-    alert(practiceId);
     this.props.onFinishedFlagChange(practiceId, this.props.dayIndex);
+  }
+
+  isFinishedPractice(practiceId) {
+    return this.props.day.finishedPractices.find(function(fp) {
+        return fp == practiceId;
+      })
   }
 
   render() {
@@ -46,7 +52,7 @@ export class MyDay extends Component {
             <ul>
                 {this.getDayPractices().map((practice) => {
                     return <li key={practice.id}>
-                        <span className={practice.finished ? "check green-check" : "check grey-check"}
+                        <span className={this.isFinishedPractice(practice.id) ? "check green-check" : "check grey-check"}
                           onClick={() => {this.switchFinishedFlag(practice.id)}}><FontAwesomeIcon icon="check" /></span>
                         <span className="goal goal-color">{practice.goal.name}</span>
                         <span className="practice practice-color">{practice.name}</span> 

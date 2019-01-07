@@ -51,6 +51,19 @@ namespace MyPracticeJournal.BusinessLogic.Services
                 day.Practices.Add(scheduleDto.Practice);
             }
 
+            // add finished practices
+            foreach (var day in days)
+            {
+                var practiceDate = GetPracticeDate(dateFrom, day.DayOfWeek);
+
+                var finishedPractices = _db.FinishedPractices.Where(x => x.Date == practiceDate);
+
+                foreach (var finishedPractice in finishedPractices)
+                {
+                    day.FinishedPractices.Add(finishedPractice.PracticeId);
+                }
+            }
+
             return new MyWeekDto
             {
                 DateFrom = dateFrom,
@@ -61,10 +74,7 @@ namespace MyPracticeJournal.BusinessLogic.Services
 
         public void UpdateFinishedPractice(int practiceId, DateTime weekFromDate, DayOfWeek dayOfWeek)
         {
-            // calculate practice date
-            var practiceDate = dayOfWeek == DayOfWeek.Sunday
-                ? weekFromDate.AddDays(6)
-                : weekFromDate.AddDays((int) dayOfWeek - 1);
+            var practiceDate = GetPracticeDate(weekFromDate, dayOfWeek);
 
             // update db
             var finishedPractice = _db.FinishedPractices
@@ -84,6 +94,14 @@ namespace MyPracticeJournal.BusinessLogic.Services
             }
 
             _db.SaveChanges();
+        }
+
+        private static DateTime GetPracticeDate(DateTime weekFromDate, DayOfWeek dayOfWeek)
+        {
+            var practiceDate = dayOfWeek == DayOfWeek.Sunday
+                ? weekFromDate.AddDays(6)
+                : weekFromDate.AddDays((int) dayOfWeek - 1);
+            return practiceDate;
         }
     }
 }

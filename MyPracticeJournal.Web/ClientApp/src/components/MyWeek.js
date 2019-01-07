@@ -92,6 +92,16 @@ export class MyWeek extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data)
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+          alert('Response.ok = false');
+      }
+    })
+    .then(data => {
+      this.setState({ myWeek: data });
     });
   }
 
@@ -107,12 +117,12 @@ export class MyWeek extends Component {
 
         <hr />
         <MyDay dayIndex={1} day={this.getDay(1)} onFinishedFlagChange={this.switchFinishedFlag} />
-        <MyDay dayIndex={2} day={this.getDay(2)} />
-        <MyDay dayIndex={3} day={this.getDay(3)} />
-        <MyDay dayIndex={4} day={this.getDay(4)} />
-        <MyDay dayIndex={5} day={this.getDay(5)} />
-        <MyDay dayIndex={6} day={this.getDay(6)} />
-        <MyDay dayIndex={0} day={this.getDay(7)} />
+        <MyDay dayIndex={2} day={this.getDay(2)} onFinishedFlagChange={this.switchFinishedFlag} />
+        <MyDay dayIndex={3} day={this.getDay(3)} onFinishedFlagChange={this.switchFinishedFlag} />
+        <MyDay dayIndex={4} day={this.getDay(4)} onFinishedFlagChange={this.switchFinishedFlag} />
+        <MyDay dayIndex={5} day={this.getDay(5)} onFinishedFlagChange={this.switchFinishedFlag} />
+        <MyDay dayIndex={6} day={this.getDay(6)} onFinishedFlagChange={this.switchFinishedFlag} />
+        <MyDay dayIndex={0} day={this.getDay(7)} onFinishedFlagChange={this.switchFinishedFlag} />
       </div>
       )
   }
