@@ -52,6 +52,7 @@ namespace MyPracticeJournal.Web
             });
 
             var connection = @"Server=.;Database=MyPracticeJournal;Trusted_Connection=True;MultipleActiveResultSets=True";
+            // var connection = @"Server=db;Database=master;User=sa;Password=Heslo.123;"; // Docker
             services.AddDbContext<MyPracticeJournalContext>
                 (options => options.UseSqlServer(connection));
         }
