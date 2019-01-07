@@ -43,6 +43,7 @@ namespace MyPracticeJournal.Web
             services.AddScoped<IGoalService, GoalService>();
             services.AddScoped<IPracticeService, PracticeService>();
             services.AddScoped<IMyWeekService, MyWeekService>();
+            services.AddScoped<IReportService, ReportService>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

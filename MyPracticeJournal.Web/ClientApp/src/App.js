@@ -9,6 +9,7 @@ import { Goals } from './components/Goals';
 import { GoalDetail } from './components/GoalDetail';
 import { Practices } from './components/Practices';
 import { PracticeDetail } from './components/PracticeDetail';
+import { Reports } from './components/Reports';
 import { NotFound } from './components/NotFound';
 import './App.css'
 
@@ -28,6 +29,7 @@ export default class App extends Component {
           <Route exact path='/goals/:id' component={GoalDetail} />
           <Route exact path='/practices' component={Practices} />
           <Route exact path='/practices/:id' component={PracticeDetail} />
+          <Route exact path='/reports' component={Reports} />
           <Route component={NotFound} />
         </Switch>
       </Layout>

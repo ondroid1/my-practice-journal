@@ -11,6 +11,7 @@ namespace MyPracticeJournal.Web
             CreateMap<GoalDto, GoalViewModel>();
             CreateMap<PracticeDto, PracticeViewModel>();
             CreateMap<MyWeekDto, MyWeekViewModel>();
+            CreateMap<ReportDto, ReportViewModel>();
         }
     }
 }
