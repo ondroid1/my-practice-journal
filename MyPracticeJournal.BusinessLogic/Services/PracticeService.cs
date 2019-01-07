@@ -40,7 +40,16 @@ namespace MyPracticeJournal.BusinessLogic.Services
 
         public void UpdatePractice(PracticeDto practiceDto)
         {
+            // remove previously saved schedules
+            var schedules = _db.Schedules.Where(x => x.PracticeId == practiceDto.Id);
+            _db.Schedules.RemoveRange(schedules);
+
+            // remove passed schedules with zero minutes
+            practiceDto.Schedules = practiceDto.Schedules.Where(x => x.Minutes > 0);
+
+            // save practice
             var practice = _db.Practices.Find(practiceDto.Id);
+
             _mapper.Map(practiceDto, practice);
             _db.SaveChanges();
         }

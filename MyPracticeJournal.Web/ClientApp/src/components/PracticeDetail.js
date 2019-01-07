@@ -55,6 +55,13 @@ export class PracticeDetail extends Component {
           'Content-Type': 'application/json',
         },
         body: data
+      })
+      .then(response => {
+        if (response.ok) {
+          this.handleBack();
+        } else {
+          alert('Response.ok = false');
+        }
       });
     } else {
       fetch('api/Practice', {
@@ -80,7 +87,6 @@ export class PracticeDetail extends Component {
   }
 
   getYoutubeImage(videoUrl) {
-    debugger;
     if (videoUrl) {
       var videoId = videoUrl.split('v=')[1];
       var ampersandPosition = videoId.indexOf('&');

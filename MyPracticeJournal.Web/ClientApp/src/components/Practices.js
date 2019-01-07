@@ -37,7 +37,6 @@ export class Practices extends Component {
 
     //faevent.stopImmediatePropagation();
       if (window.confirm('Do you want to delete id ' + practiceId)) {
-          debugger;
         fetch('api/Practice/' + practiceId, {
           method: 'DELETE',
           headers: {
