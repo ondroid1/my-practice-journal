@@ -75,6 +75,8 @@ namespace MyPracticeJournal.BusinessLogic.Services
         public void UpdateFinishedPractice(int practiceId, DateTime weekFromDate, DayOfWeek dayOfWeek)
         {
             var practiceDate = GetPracticeDate(weekFromDate, dayOfWeek);
+            var dayIndex = (int) dayOfWeek;
+            var schedule = _db.Schedules.First(x => x.PracticeId == practiceId && x.DayOfWeek == dayIndex);
 
             // update db
             var finishedPractice = _db.FinishedPractices
@@ -86,6 +88,7 @@ namespace MyPracticeJournal.BusinessLogic.Services
                 {
                     Date = practiceDate,
                     PracticeId = practiceId,
+                    Minutes = schedule.Minutes
                 });
             }
             else

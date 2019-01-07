@@ -4,10 +4,6 @@ import './ScheduleSelector.css';
 export class ScheduleSelector extends Component {
   displayName = ScheduleSelector.name
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <table className="schedule-table">

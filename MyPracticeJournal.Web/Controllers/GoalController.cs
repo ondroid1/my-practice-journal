@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using MyPracticeJournal.BusinessLogic.DataTransferObjects;

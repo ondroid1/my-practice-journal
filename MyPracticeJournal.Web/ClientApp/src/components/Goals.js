@@ -34,22 +34,23 @@ export class Goals extends Component {
     this.props.history.push('goals/0');
   }
 
-  deleteGoal(event, goalId) {
-
-    //faevent.stopImmediatePropagation();
-      if (window.confirm('Do you want to delete id ' + goalId)) {
-          debugger;
-        fetch('api/Goal/' + goalId, {
-          method: 'DELETE',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-        })
-        .then(data => {
-          this.setState({ goals: data, loading: false });
-        })
-        .catch(error => console.log(error));
+  deleteGoal(goal) {
+    if (window.confirm('Do you want to delete this goal: ' + goal.name)) {
+      fetch('api/Goal/' + goal.id, {
+        method: 'DELETE',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+      })
+      .then(_ => {
+        let refreshedGoals = this.state.goals.filter(function( g ) {
+          return g.id !== goal.id;
+        });
+        
+        this.setState({ goals: refreshedGoals, loading: false });
+      })
+      .catch(error => console.log(error));
     }
   }
 
@@ -62,19 +63,19 @@ export class Goals extends Component {
             <th>
               Name</th>
             <th>Description</th>
-            <th className="action-column"><button type="button" className="btn btn-primary" onClick={that.showNewGoalForm}>Add</button></th>
+            <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
           {goals.map(goal => 
-            <tr key={goal.id} onClick={() => that.editGoal(goal)}>
+            <tr key={goal.id}>
               <td className="goal-color">
                 {goal.name}
               </td>
               <td>{goal.description}</td>
               <td className="action-column">
-                <button className="icon-button"><FontAwesomeIcon icon="edit" /></button>
-                <button className="icon-button" onClick={(event) => that.deleteGoal(event, goal.id)}><FontAwesomeIcon icon="trash" /></button>
+                <button className="icon-button" onClick={() => that.editGoal(goal)}><FontAwesomeIcon icon="edit" /></button>
+                <button className="icon-button" onClick={(event) => that.deleteGoal(goal)}><FontAwesomeIcon icon="trash" /></button>
               </td>
             </tr>
           )}
@@ -91,6 +92,7 @@ export class Goals extends Component {
     return (
       <div>
         <h1>Goals</h1>
+        <button type="button" className="btn btn-primary" onClick={this.showNewGoalForm}>Add</button>
         {contents}
       </div>
     );

@@ -9,5 +9,7 @@ namespace MyPracticeJournal.BusinessLogic.DataTransferObjects
         public int Year { get; set; }
 
         public int Month { get; set; }
+
+        public IList<ReportItemDto> ReportItems { get; set; }
     }
 }

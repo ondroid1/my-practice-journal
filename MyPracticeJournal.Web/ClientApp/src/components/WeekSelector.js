@@ -3,10 +3,6 @@ import './WeekSelector.css';
 
 export class WeekSelector extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     onWeekChangeClick(weekMovement) {
         this.props.onWeekChange(weekMovement);
     }
@@ -14,7 +10,7 @@ export class WeekSelector extends Component {
     render() {
         return (
             <div className="row week-selector">
-              <div className="col-sm-2">
+              <div className="col-sm-2 btn-group">
                 <button type="button" className="btn btn-primary" onClick={() => {this.onWeekChangeClick(-1)}}>◀</button>
                 <button type="button" className="btn btn-primary" onClick={() => {this.onWeekChangeClick(0)}}>⦿</button>
                 <button type="button" className="btn btn-primary" onClick={() => {this.onWeekChangeClick(1)}}>▶</button>

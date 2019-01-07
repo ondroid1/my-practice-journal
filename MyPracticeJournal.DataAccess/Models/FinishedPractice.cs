@@ -11,5 +11,7 @@ namespace MyPracticeJournal.DataAccess.Models
         public int PracticeId { get; set; }
 
         public Practice Practice { get; set; }
+
+        public int Minutes { get; set; }
     }
 }

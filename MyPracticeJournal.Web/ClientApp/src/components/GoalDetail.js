@@ -43,6 +43,13 @@ export class GoalDetail extends Component {
           'Content-Type': 'application/json',
         },
         body: data
+      })
+      .then(response => {
+        if (response.ok) {
+          this.handleBack();
+        } else {
+          alert('Response.ok = false');
+        }
       });
     } else {
       fetch('api/Goal', {
