@@ -8,9 +8,6 @@ namespace MyPracticeJournal.Web.Models
 {
     public class PracticeViewModel
     {
-        private int _mondayMinutes;
-        private int _tuesdayMinutes;
-
         public int Id { get; set; }
 
         [Required]
